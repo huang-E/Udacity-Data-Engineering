@@ -1,0 +1,93 @@
+Fact_immigration
+Primary key: cicid
+ |-- cicid: double (nullable = true) 				Unique id to identify the traveller record
+ |-- year: double (nullable = true)  				The year the traveller arrived
+ |-- month: double (nullable = true) 				The Month the traveller arrived
+ |-- birth_country: double (nullable = true) 		The birth country of the traveller
+ |-- residence_country: double (nullable = true) 	The current residence_country of the traveller
+ |-- port: string (nullable = true) 				The arrival US port name
+ |-- arrival_date: date (nullable = true) 			Traveller arrival date
+ |-- visa_code: double (nullable = true)  			Visa codes collapsed into three categories:
+																1 = Business
+																2 = Pleasure
+																3 = Student
+ |-- departure_date: double (nullable = true)  		Departure Date from the USA. It is a SAS date numeric field that a permament format has not been applied
+ |-- arrival_code: double (nullable = true) 		possible values are 
+																1 = 'Air'
+																2 = 'Sea'
+																3 = 'Land'
+																9 = 'Not reported
+ |-- repondent_age: double (nullable = true) 		Age of Respondent in Years
+ |-- birth_year: double (nullable = true)  			4 digit year of birth of the traveller
+ |-- visa_type: string (nullable = true)  			Detailed visa types:
+															  B1: B1 visa is for business visits valid for up to a year
+															  B2: B2 visa is for pleasure visits valid for up to a year
+															  CP: could not find a definition
+															  E2: E2 investor visas allows foreign investors to enter and work inside of the United States based on a substantial investment
+															  F1: F1 visas are used by non-immigrant students for Academic and Language training Courses. 
+															  F2: F2 visas are used by the dependents of F1 visa holders
+															  GMT: could not find a definition
+															  M1: for students enrolled in non-academic or “vocational study”. Mechanical, language, cooking classes, etc...
+															  WB: Waiver Program (WT/WB Status) travel to the United States for tourism or business for stays of 90 days or less without obtaining a visa.
+															  WT: Waiver Program (WT/WB Status) travel to the United States for tourism or business for stays of 90 days or less without obtaining a visa.
+ 
+Dim_visa_code
+Primary key: visa_code
+ |-- visa_code: long (nullable = true) 				The Visa code 
+ |-- visa_type: string (nullable = true) 			The Visa type details
+ 
+ 
+Dim_country_code
+Primary key: country_code
+ |-- country_code: long (nullable = true)          Country code
+ |-- country: string (nullable = true)             Country name
+ 
+Dim_us_demographics
+Primay key: state, city,State_Code, race
+ |-- city: string (nullable = true)                  Name of the city
+ |-- state: string (nullable = true)                 Name of the state
+ |-- median_age: double (nullable = true)            Median age for the city
+ |-- male_population: string (nullable = true)     	 Size of the male population
+ |-- female_population: string (nullable = true)	 Size of the female population
+ |-- total_population: integer (nullable = true)     Total population
+ |-- number_of_veterans: integer (nullable = true)   Number of veterans
+ |-- number_of_foreign_born: integer (nullable = true)  Number of foreign born residents
+ |-- average_household_size: double (nullable = true) Average size of a household
+ |-- state_code: string (nullable = true)            Two letter state code
+ |-- race: string (nullable = true)                 Racial category selected by respondants
+ |-- count: integer (nullable = true)               Number of respondants (ie Size) for the combination City, State, Race
+
+Dim_Port
+Primary key: port_code
+ |-- port_code: string (nullable = true)       Port code 
+ |-- port_name: string (nullable = true)	   Port name
+ |-- state: string (nullable = true)           State port belongs to
+ 
+ 
+Dim_Airpot
+
+Pimary key: ident
+ |-- ident: string (nullable = true)       Airport id
+ |-- type: string (nullable = true)		   Type of airport
+ |-- name: string (nullable = true)        Airport name 
+ |-- elevation_ft: integer (nullable = true) Elevation of airport
+ |-- continent: string (nullable = true)     continent where Airport is
+ |-- iso_country: string (nullable = true)   iso country code
+ |-- municipality: string (nullable = true)  municipality
+ |-- gps_code: string (nullable = true)     gps code
+ |-- iata_code: string (nullable = true)    iata code 
+ |-- local_code: string (nullable = true)   local code 
+ |-- state: string (nullable = true)        state where airport is 
+ |-- latitude: double (nullable = true)     latitude 
+ |-- longitude: double (nullable = true)    longitude 
+ 
+Dim_country_code
+Pimary Key: country_code
+ |-- country_code: double (nullable = true) The code of the country
+ |-- country: string (nullable = true)      The name of the country
+
+Dim_port
+Primary key: port_code
+|-- port_code: string (nullable = true)   The code of the port 
+|-- port_name: string (nullable = true)   The name of the port 
+|-- state: string (nullable = true)       The state the port belongs to 
